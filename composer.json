@@ -1,22 +1,30 @@
 {
-    "name": "vxm/migrate-phone-number",
-    "description": "Library for migrate phone number 11 to 10 in VN",
-    "keywords": ["php", "migrate-phone-number", "11-to-10", "VN"],
-    "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "Vuong Minh",
-            "email": "vuongxuongminh@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=7.1.0",
-        "symfony/console": "~3.0|~4.0",
-		"doctrine/dbal": ">=2.8"
-    },
-    "autoload": {
-        "psr-4": {
-            "VXM\\MPN\\": "src"
-        }
+  "name": "vxm/migrate-phone-number",
+  "description": "Library for migrate phone number 11 to 10 in VN",
+  "keywords": [
+    "php",
+    "migrate-phone-number",
+    "11-to-10",
+    "VN"
+  ],
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Vuong Minh",
+      "email": "vuongxuongminh@gmail.com"
     }
+  ],
+  "bin": [
+    "vxm"
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "doctrine/dbal": ">=2.8",
+    "symfony/console": "~3.0|~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "VXM\\MPN\\": "src"
+    }
+  }
 }

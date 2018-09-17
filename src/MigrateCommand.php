@@ -56,6 +56,7 @@ class MigrateCommand extends Command
         if ($connection->connect()) {
             $output->writeln('<info>Connected to database</info>');
             $this->migrate($connection, $input, $output);
+            $output->writeln('<info>Done!</info>');
         }
     }
 
@@ -86,6 +87,7 @@ class MigrateCommand extends Command
     {
         $result = [];
         $tableColumns = array_map('trim', explode(',', $tableColumns));
+
         foreach ($tableColumns as $tableColumn) {
             list($table, $column) = explode(':', $tableColumn);
             $result[$table][] = $column;
