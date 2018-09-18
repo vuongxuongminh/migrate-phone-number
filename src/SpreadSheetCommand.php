@@ -19,11 +19,20 @@ class SpreadSheetCommand extends MigrateCommand
     /**
      * @inheritdoc
      */
+    protected static $defaultName = 'migrate:ss';
+
+    /**
+     * @inheritdoc
+     */
     protected function configure(): void
     {
-        $this->setName('migrate:ss')
-            ->setDescription('Migrate phone number of Spread Sheet column value 11 to 10')
-            ->setHelp('https://github.com/vuongxuongminh/migrate-phone-number');
+        $this->setDescription('Migrate phone number of Spread Sheet column value 11 to 10');
+
+    }
+
+    protected function migrate(): void
+    {
+        // TODO: Implement migrate() method.
     }
 
 }

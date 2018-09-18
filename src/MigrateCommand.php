@@ -67,7 +67,7 @@ abstract class MigrateCommand extends Command
 
         /** @var \Symfony\Component\Console\Helper\QuestionHelper $question */
         $question = $this->getHelper('question');
-        $confirm = new ConfirmationQuestion('<comment>Lệnh sẽ thực hiện thay đổi dữ liệu của bạn, hãy cân nhắc sao lưu dữ liệu trước khi thực thi. Bạn có muốn tiếp tục? (y/n): </comment>', false);
+        $confirm = new ConfirmationQuestion('<comment>Lệnh sẽ thực hiện thay đổi dữ liệu của bạn, hãy cân nhắc sao lưu dữ liệu trước khi thực hiện lệnh. Bạn có muốn tiếp tục? (y/n): </comment>', false);
 
         if ($question->ask($input, $output, $confirm)) {
             $this->migrate();

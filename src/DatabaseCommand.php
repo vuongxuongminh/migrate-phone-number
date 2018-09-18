@@ -24,6 +24,11 @@ class DatabaseCommand extends MigrateCommand
 {
 
     /**
+     * @inheritdoc
+     */
+    protected static $defaultName = 'migrate:db';
+
+    /**
      * @var null|Connection Đối tượng kết nối CSDL để thực thi chuyển đổi.
      */
     protected $db;
@@ -33,11 +38,9 @@ class DatabaseCommand extends MigrateCommand
      */
     protected function configure(): void
     {
-        $this
-            ->setName('migrate:db')
-            ->setDescription('Lệnh hổ trợ chuyển đổi dữ liệu các cột trên bảng CSDL chứa số điện thoại 11 số sang 10 số.');
-
         parent::configure();
+
+        $this->setDescription('Lệnh hổ trợ chuyển đổi dữ liệu các cột trên bảng CSDL chứa số điện thoại 11 số sang 10 số.');
     }
 
     /**
