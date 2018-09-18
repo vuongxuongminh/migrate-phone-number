@@ -9,9 +9,9 @@ namespace VXM\MPN;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
-use Symfony\Component\Console\Question\Question;
+
 use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Console\Question\Question;
 
 
 /**
@@ -52,12 +52,12 @@ class DatabaseCommand extends MigrateCommand
     protected function migrate(): void
     {
         $this->outputted->writeln('<info>Thông tin CSDL</info>');
-        
+
         /** @var \Symfony\Component\Console\Helper\QuestionHelper $question */
         $question = $this->getHelper('question');
         $connection = DriverManager::getConnection([
             'driver' => 'pdo_' . $question->ask($this->inputted, $this->outputted, new Question('PDO Driver (mysql, pgsql, sqlsrv, sqlite): ')),
-            'host' => $question->ask($this->inputted, $this->outputted, new Question('Host (127.0.0.1, localhost...): ')),
+            'host' => $question->ask($this->inputted, $this->outputted, new Question('Host (ví dụ: 127.0.0.1, localhost...): ')),
             'dbname' => $question->ask($this->inputted, $this->outputted, new Question('DBName: ')),
             'user' => $question->ask($this->inputted, $this->outputted, new Question('User: ')),
             'password' => $question->ask($this->inputted, $this->outputted, (new Question('Pass: '))->setHidden(true)->setHiddenFallback(false)),
@@ -81,7 +81,7 @@ class DatabaseCommand extends MigrateCommand
     {
         /** @var \Symfony\Component\Console\Helper\QuestionHelper $question */
         $question = $this->getHelper('question');
-        $tableColumns = $question->ask($this->inputted, $this->outputted, new Question('Danh sách bảng và cột (table1:column1, table2:column2 ...): '));
+        $tableColumns = $question->ask($this->inputted, $this->outputted, new Question('Danh sách bảng và cột (ví dụ: table1:column1, table2:column2, ...): '));
 
         $this->db->beginTransaction();
         try {
@@ -96,17 +96,13 @@ class DatabaseCommand extends MigrateCommand
 
             throw $throwable;
         }
-
-        if ($question->ask($this->inputted, $this->outputted, new ConfirmationQuestion('Bạn có muốn tiếp tục với danh sách bảng và cột mới? (y/n): ', false))) {
-            $this->migrateDatabase();
-        }
     }
 
     /**
      * Phương thức hổ trợ chuyển đổi cấu trúc bảng cột sang mảng PHP.
      *
-     * @param string $tableColumns Chuỗi bảng và cột do end-user nhập
-     * @return array Mảng gồm có các khóa là tên bảng và giá trị là mảng danh sách cột cần chuyển đổi số điện thoại
+     * @param string $tableColumns Chuỗi bảng và cột do end-user nhập.
+     * @return array Mảng gồm có các khóa là tên bảng và giá trị là mảng danh sách cột cần chuyển đổi số điện thoại.
      */
     protected function normalizeTableColumns(string $tableColumns): array
     {
@@ -135,9 +131,9 @@ class DatabaseCommand extends MigrateCommand
         $queryStatement = $this->db->createQueryBuilder()->select($selectColumns)->from($table)->execute();
 
         if (($rowCount = $queryStatement->rowCount()) > 0) {
+            $this->outputted->writeln("<info>Thực thi chuyển đổi dữ liệu trên bảng: `$table`...</info>");
             $progressBar = new ProgressBar($this->outputted, $rowCount);
             $progressBar->start();
-            $this->outputted->writeln("<info>Thực thi chuyển đổi dữ liệu trên bảng: `$table`...</info>");
 
             while ($row = $queryStatement->fetch()) {
                 $updateStatement = $this->db->createQueryBuilder()->update($table);
@@ -154,7 +150,7 @@ class DatabaseCommand extends MigrateCommand
             }
 
             $progressBar->finish();
-            $this->outputted->writeln("<info>Hoàn tất chuyển đổi dữ liệu trên bảng: `$table`</info>");
+            $this->outputted->writeln("\n<info>Hoàn tất chuyển đổi dữ liệu trên bảng: `$table`</info>");
         } else {
             $this->outputted->writeln("<comment>Bỏ qua bảng: `$table` vì bảng rỗng.</comment>");
         }
@@ -164,7 +160,7 @@ class DatabaseCommand extends MigrateCommand
      * Phương thức hổ trợ lấy danh sách khóa chính trên bảng.
      *
      * @param string $table Bảng cần lấy danh sách khóa chính.
-     * 
+     *
      * @return array Mảng chứa danh sách khóa chính.
      * @throws \Doctrine\DBAL\DBALException
      */

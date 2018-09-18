@@ -8,6 +8,7 @@
 namespace VXM\MPN;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
@@ -52,6 +53,7 @@ abstract class MigrateCommand extends Command
      */
     protected function configure(): void
     {
+        ProgressBar::setFormatDefinition('normal', '[%bar%] %percent:3s%% (%elapsed:6s%)');
         $this->setHelp('https://github.com/vuongxuongminh/migrate-phone-number');
 
         parent::configure();
@@ -75,7 +77,7 @@ abstract class MigrateCommand extends Command
     }
 
     /**
-     * Phương thức thực trừu tượng đảm nhiệm việc thực thi chuyển đổi số điện thoại 11 số sang 10.
+     * Phương thức thức trừu tượng đảm nhiệm việc thực thi chuyển đổi số điện thoại 11 số sang 10.
      */
     abstract protected function migrate(): void;
 
