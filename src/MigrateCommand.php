@@ -38,12 +38,12 @@ abstract class MigrateCommand extends Command
     ];
 
     /**
-     * @var InputInterface Đối tượng Input khi thực thi lệnh. Nó chỉ có giá trị khi phương thực [[execute()]] được gọi.
+     * @var null|InputInterface Đối tượng Input khi thực thi lệnh. Nó chỉ có giá trị khi phương thực [[execute()]] được gọi.
      */
     protected $inputted;
 
     /**
-     * @var OutputInterface Đối tượng Output khi thực thi lệnh. Nó chỉ có giá trị khi phương thực [[execute()]] được gọi.
+     * @var null|OutputInterface Đối tượng Output khi thực thi lệnh. Nó chỉ có giá trị khi phương thực [[execute()]] được gọi.
      */
     protected $outputted;
 
