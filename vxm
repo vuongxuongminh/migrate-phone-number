@@ -20,8 +20,10 @@ require($autoloadFile);
 
 use Symfony\Component\Console\Application;
 
-use VXM\MPN\MigrateCommand;
+use VXM\MPN\DatabaseCommand;
+use VXM\MPN\SpreadSheetCommand;
 
 $app = new Application('Migrate Phone Number', '1.0.0');
-$app->add(new MigrateCommand);
+$app->add(new DatabaseCommand);
+$app->add(new SpreadSheetCommand);
 $app->run();
