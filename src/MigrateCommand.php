@@ -8,6 +8,9 @@
 namespace VXM\MPN;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
  * Lớp trừu tượng MigrateCommand hổ trợ các phương thức cơ bản cho việc chuyển đổi số điện thoại 11 số sang 10 số, giúp cho các lớp
@@ -16,7 +19,7 @@ use Symfony\Component\Console\Command\Command;
  * @author Vuong Minh <vuongxuongminh@gmail.com>
  * @since 1.0
  */
-class MigrateCommand extends Command
+abstract class MigrateCommand extends Command
 {
 
     /**
@@ -35,6 +38,16 @@ class MigrateCommand extends Command
     ];
 
     /**
+     * @var InputInterface Đối tượng Input khi thực thi lệnh. Nó chỉ có giá trị khi phương thực [[execute()]] được gọi.
+     */
+    protected $inputted;
+
+    /**
+     * @var OutputInterface Đối tượng Output khi thực thi lệnh. Nó chỉ có giá trị khi phương thực [[execute()]] được gọi.
+     */
+    protected $outputted;
+
+    /**
      * @inheritdoc
      */
     protected function configure(): void
@@ -43,6 +56,26 @@ class MigrateCommand extends Command
 
         parent::configure();
     }
+
+    /**
+     * @inheritdoc
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $this->inputted = $input;
+        $this->outputted = $output;
+
+        /** @var \Symfony\Component\Console\Helper\QuestionHelper $question */
+        $question = $this->getHelper('question');
+        $confirm = new ConfirmationQuestion('<comment>Lệnh sẽ thực hiện thay đổi dữ liệu của bạn, hãy cân nhắc sao lưu dữ liệu trước khi thực thi. Bạn có muốn tiếp tục? (y/n): </comment>', false);
+
+        if ($question->ask($input, $output, $confirm)) {
+            $this->migrate();
+        }
+    }
+
+
+    abstract protected function migrate(): void;
 
     /**
      * Phương thức hổ trợ chuyển đổi số điện thoại 11 số sang 10 số.
