@@ -74,7 +74,9 @@ abstract class MigrateCommand extends Command
         }
     }
 
-
+    /**
+     * Phương thức thực trừu tượng đảm nhiệm việc thực thi chuyển đổi số điện thoại 11 số sang 10.
+     */
     abstract protected function migrate(): void;
 
     /**
@@ -83,7 +85,7 @@ abstract class MigrateCommand extends Command
      * @param string $phoneNumber Số điện thoại 11 số cần chuyển đổi
      * @return string Số điện thoại sau khi chuyển đổi
      */
-    protected function convert(string $phoneNumber): string
+    final protected function convert(string $phoneNumber): string
     {
         return preg_replace_callback(self::MIGRATE_PATTERN, function ($matches) {
             $matches[3] = self::MIGRATE_MAP[$matches[3]];
