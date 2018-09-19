@@ -42,3 +42,12 @@ vxm migrate:ss
 ## Screenshot
 
 ![1](screenshots/1.png)
+
+## Hỏi & đáp
+
++ Các loại CSDL (database) nào được hổ trợ?
+    - MySQL, Postgres, SQL Server, Oracle, SQLite
++ Các loại format spreadsheet nào được hổ trợ?
+    - Xlsx, Xlsm, Xltm, Xls, Xlt, Ods, Ots, Slk, Xml, Gnumeric, Htm, Html, CSV
++ Đối với các trường dữ liệu đặc biệt (kiểu JSON hoặc là chuỗi HTML) thì có được hổ trợ không?
+    - Có
