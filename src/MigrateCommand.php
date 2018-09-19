@@ -24,6 +24,11 @@ abstract class MigrateCommand extends Command
 {
 
     /**
+     * Chuỗi đường dẫn url hướng dẫn sử dụng.
+     */
+    const HELP_URL = 'https://github.com/vuongxuongminh/migrate-phone-number';
+
+    /**
      * Chuổi hằng regex pattern dùng để định vị số điện thoại 11 số trên db.
      */
     const MIGRATE_PATTERN = '~(^|\'|")(\+?84|0)?(16[2-9]|12[0-9]|18[68]|199)(\d{7})($|\'|")~';
@@ -53,8 +58,7 @@ abstract class MigrateCommand extends Command
      */
     protected function configure(): void
     {
-        ProgressBar::setFormatDefinition('normal', '[%bar%] %percent:3s%% (%elapsed:6s%)');
-        $this->setHelp('https://github.com/vuongxuongminh/migrate-phone-number');
+        $this->setHelp(static::HELP_URL);
 
         parent::configure();
     }

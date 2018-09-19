@@ -133,6 +133,7 @@ class DatabaseCommand extends MigrateCommand
         if (($rowCount = $queryStatement->rowCount()) > 0) {
             $this->outputted->writeln("<info>Thực thi chuyển đổi dữ liệu trên bảng: `$table`...</info>");
             $progressBar = new ProgressBar($this->outputted, $rowCount);
+            $progressBar->setFormat('[%bar%] %percent:3s%% (%elapsed:6s%)');
             $progressBar->start();
 
             while ($row = $queryStatement->fetch()) {

@@ -101,6 +101,7 @@ class SpreadsheetCommand extends MigrateCommand
 
         $migrated = false;
         $progressBar = new ProgressBar($this->outputted);
+        $progressBar->setFormat('[%bar%] %percent:3s%% (%elapsed:6s%)');
         $progressBar->start();
 
         foreach ($columns as $column) {
