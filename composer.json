@@ -25,7 +25,8 @@
   },
   "autoload": {
     "psr-4": {
-      "VXM\\MPN\\": "src"
+      "VXM\\MPN\\": "src",
+      "VXM\\MPN\\Tester\\": "tests"
     }
   }
 }
