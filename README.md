@@ -13,6 +13,9 @@ Tool được xây dựng để phục vụ việc chuyển đổi dữ liệu s
 Tool hổ trợ chuyển đổi trên các CSDL phổ biến như `mysql, postgres, sql server...` và 
 `spreadsheet`.
 
+## Yêu cầu
+* [PHP >= 7.1](http://php.net)
+
 ## Cài đặt
 
 Cài đặt thông qua `composer` nếu như đó là một khái niệm mới với bạn xin click vào 
