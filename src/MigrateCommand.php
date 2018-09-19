@@ -62,7 +62,7 @@ abstract class MigrateCommand extends Command
     /**
      * @inheritdoc
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $this->inputted = $input;
         $this->outputted = $output;
