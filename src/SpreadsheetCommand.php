@@ -60,7 +60,7 @@ class SpreadsheetCommand extends MigrateCommand
             $reader = IOFactory::createReaderForFile($file);
             $spreadsheet = $this->spreadsheet = $reader->load($file);
         } catch (\Throwable $e) {
-            $this->outputted->writeln('<error>Đường dẫn thư mục không hợp lệ!</error>');
+            $this->outputted->writeln('<error>Đường dẫn thư mục không hợp lệ hoặc file không đúng định dạng!</error>');
             return;
         }
 
@@ -109,7 +109,7 @@ class SpreadsheetCommand extends MigrateCommand
 
             for ($i = 1; $i <= $highestRow; $i++) {
                 $migrated = true;
-                $cell = $worksheet->getCell("$column:$i");
+                $cell = $worksheet->getCell("$column$i", false);
                 $phoneNumber = $this->convert($cell->getValue());
                 $cell->setValue($phoneNumber);
                 $progressBar->advance();
