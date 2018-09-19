@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestCase;
 
 use Symfony\Component\Console\Application;
 
+use VXM\MPN\DatabaseCommand;
+use VXM\MPN\SpreadsheetCommand;
+
 /**
  * Lớp trừu tượng BaseTestCase hổ trợ việc cấu hình cơ bản cho các lớp test case.
  *
@@ -30,7 +33,10 @@ abstract class BaseTestCase extends TestCase
      */
     protected function setUp()
     {
-        $this->mockApp();
+        $app = $this->mockApp();
+
+        $app->add(new DatabaseCommand);
+        $app->add(new SpreadsheetCommand);
     }
 
     /**
