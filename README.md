@@ -11,7 +11,7 @@
 
 Tool được xây dựng để phục vụ việc chuyển đổi dữ liệu số điện thoại từ 11 số sang 10 số.
 Tool hổ trợ chuyển đổi trên các CSDL phổ biến như `mysql, postgres, sql server...` và 
-`spreadsheet`.
+`spreadsheet (xls, xlsx, csv...)`.
 
 ## Yêu cầu
 * [PHP >= 7.1](http://php.net)
@@ -33,7 +33,7 @@ composer global require "vxm/migrate-phone-number"
 vxm migrate:db
 ```
 
-+ Đối với spreadsheet (excel) thì bạn hãy gõ lệnh CMD sau:
++ Đối với spreadsheet (xls, xlsx, csv...) thì bạn hãy gõ lệnh CMD sau:
 
 ```sh
 vxm migrate:ss
