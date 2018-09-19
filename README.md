@@ -49,5 +49,5 @@ vxm migrate:ss
     - MySQL, Postgres, SQL Server, Oracle, SQLite
 + Các loại format spreadsheet nào được hổ trợ?
     - Xlsx, Xlsm, Xltm, Xls, Xlt, Ods, Ots, Slk, Xml, Gnumeric, Htm, Html, CSV
-+ Đối với các trường dữ liệu đặc biệt (kiểu JSON hoặc là chuỗi HTML) thì có được hổ trợ không?
++ Đối với các trường dữ liệu đặc biệt số điện thoại nằm bên trong chuỗi JSON thì có được hổ trợ không?
     - Có
